@@ -4,6 +4,7 @@
 
 #include "s21_string.h"
 
+
 void *s21_memmove(void *dest, const void *src, s21_size_t n) {
   s21_size_t idx;
   if (s21_NULL == dest) dest = s21_NULL;
