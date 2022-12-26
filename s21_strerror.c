@@ -70,12 +70,8 @@
       "Memory page has hardware error"
 #endif
 
-<<<<<<< HEAD
 #ifndef __APPLE__
 #define STATUS 1
-=======
-#ifndef __APPLE__ || __MACH__
->>>>>>> 8f8fe03e5a8bc3506b7a3802d55577c73cb9ab22
 #define ERRORS_STRING ERRORS_STRING_APPLE
 #define ERRORS_STRING_APPLE                                                   \
   "Operation not permitted", "No such file or directory", "No such process",  \
@@ -129,7 +125,6 @@
 
 char *s21_strerror(int errnum) {
   char *ERR_STRING[] = {ERRORS_STRING};
-<<<<<<< HEAD
   char *error_string = NULL;
   if (0 == STATUS) {
     if (0 < errnum && 41 != errnum && 58 != errnum && 147 > errnum) {
@@ -146,8 +141,5 @@ char *s21_strerror(int errnum) {
       error_string = "Unknown error ";
     }
   }
-=======
-  char *error_string = ERR_STRING[errnum];
->>>>>>> 8f8fe03e5a8bc3506b7a3802d55577c73cb9ab22
   return error_string;
 }
