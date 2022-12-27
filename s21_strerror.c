@@ -132,6 +132,8 @@ char *s21_strerror(int errnum) {
     } else {
       // дописать strcatи добавлять цифры неизвестных ошибок
       error_string = "Unknown error ";
+      char *ern = (char*)errnum;
+      s21_strcat(error_string, ern);
     }
   } else if (1 == STATUS) {
     if (1 < errnum && 107 > errnum) {
