@@ -12,14 +12,3 @@ char *s21_strcat(char *dest, const char *str) {
   }
   return tmp;
 }
-
-int main(void) {
-  char dest[90] = "Learning C++ is fun";
-  char src[90] = " and easy";
-  char *nums = " 20";
-  s21_strcat(dest, src);
-  printf("%s\n", dest);
-  s21_strcat(dest, nums);
-  printf("%s\n", dest);
-  exit(0);
-}
