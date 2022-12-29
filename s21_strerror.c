@@ -4,7 +4,7 @@
 
 #include "s21_string.h"
 
-#ifndef __LINUX__
+#if defined(__LINUX__)
 #define STATUS 0
 #define ERRORS_STRING ERRORS_STRING_LINUX
 #define ERRORS_STRING_LINUX                                                    \
@@ -70,7 +70,7 @@
       "Memory page has hardware error"
 #endif
 
-#ifndef __APPLE__
+#if defined(__APPLE__)
 #define STATUS 1
 #define ERRORS_STRING ERRORS_STRING_APPLE
 #define ERRORS_STRING_APPLE                                                   \
@@ -125,47 +125,32 @@
 
 char *s21_strerror(int errnum) {
   char *ERR_STRING[] = {ERRORS_STRING};
-  char *error_string = NULL;
+  char *error_string;
+  char es[256];
   if (0 == STATUS) {
-    if (0 < errnum && 41 != errnum && 58 != errnum && 147 > errnum) {
+    if (0 < errnum && 147 > errnum) {
       error_string = ERR_STRING[errnum];
     } else {
-      // дописать strcatи добавлять цифры неизвестных ошибок
-      error_string = "Unknown error ";
-      // char *ern = (char *)errnum;
-      // printf("%c\n");
-      // s21_strcat(error_string, ern);
+      s21_itoa(errnum, es);
+      printf("%s\n", es);
+      error_string = "Unknown error";
     }
   } else if (1 == STATUS) {
     if (1 < errnum && 107 > errnum) {
       error_string = ERR_STRING[errnum];
     } else {
-      // дописать strcatи добавлять цифры неизвестных ошибок
-      error_string = "Unknown error ";
+      s21_itoa(errnum, es);
+      printf("%s\n", s21_itoa(errnum, es));
+      error_string = "Unknown error";
     }
   }
   return error_string;
 }
 
-char *itoa(int number, char *destination, int base) {
-  int count = 0;
-  do {
-    int digit = number % base;
-    destination[count++] = (digit > 9) ? digit - 10 + 'A' : digit + '0';
-  } while ((number /= base) != 0);
-  destination[count] = '\0';
-  int i;
-  for (i = 0; i < count / 2; ++i) {
-    char symbol = destination[i];
-    destination[i] = destination[count - i - 1];
-    destination[count - i - 1] = symbol;
+int main(void) {
+  printf("STATUS %d\n", STATUS);
+  for (int idx = -10; idx < 147; idx++) {
+    printf("%s\n", s21_strerror(idx));
   }
-  return destination;
-}
-
-int main(int argc, char *argv[]) {
-  char buffer[100];
-  printf("%s\n", itoa(21474836409, buffer, 10));
-  printf("max int %d", 2147483640);
   return 0;
 }

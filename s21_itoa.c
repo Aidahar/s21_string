@@ -1,10 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
+
+#include "s21_string.h"
 // #include <string.h>
 
-char *s21_itoa(int num, char *buf);
-int cnt_number(int num);
-void reverse(char *str);
+// char *s21_itoa(int num, char *buf);
+// int cnt_number(int num);
+// void reverse(char *str);
 
 // int main(void) {
 //   int num = -123;
@@ -65,13 +67,14 @@ char *s21_itoa(int num, char *buf) {
       ans[idx] = '-';
     }
   }
+  reverse(ans);
   return ans;
 }
 
 void reverse(char *str) {
   if (str) {
     char tmp;
-    int idx = strlen(str) - 1;
+    int idx = s21_strlen(str) - 1;
     for (int i = 0; i <= idx / 2; i++) {
       tmp = str[i];
       str[i] = str[idx];
