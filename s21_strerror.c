@@ -132,8 +132,9 @@ char *s21_strerror(int errnum) {
     } else {
       // дописать strcatи добавлять цифры неизвестных ошибок
       error_string = "Unknown error ";
-      char *ern = (char*)errnum;
-      s21_strcat(error_string, ern);
+      // char *ern = (char *)errnum;
+      // printf("%c\n");
+      // s21_strcat(error_string, ern);
     }
   } else if (1 == STATUS) {
     if (1 < errnum && 107 > errnum) {
@@ -144,4 +145,27 @@ char *s21_strerror(int errnum) {
     }
   }
   return error_string;
+}
+
+char *itoa(int number, char *destination, int base) {
+  int count = 0;
+  do {
+    int digit = number % base;
+    destination[count++] = (digit > 9) ? digit - 10 + 'A' : digit + '0';
+  } while ((number /= base) != 0);
+  destination[count] = '\0';
+  int i;
+  for (i = 0; i < count / 2; ++i) {
+    char symbol = destination[i];
+    destination[i] = destination[count - i - 1];
+    destination[count - i - 1] = symbol;
+  }
+  return destination;
+}
+
+int main(int argc, char *argv[]) {
+  char buffer[100];
+  printf("%s\n", itoa(21474836409, buffer, 10));
+  printf("max int %d", 2147483640);
+  return 0;
 }
