@@ -135,7 +135,7 @@ char *s21_strerror(int errnum) {
 #endif
   char es[256];
   if (0 == STATUS) {
-    if (0 < errnum && 147 > errnum) {
+    if (0 <= errnum && 147 > errnum) {
       flag++;
       error_string = ERR_STRING[errnum];
     } else {
