@@ -1,3 +1,5 @@
+#include "s21_string.h"
+
 char *s21_strtok(char *str, const char *delim) {
   static char *p;
   char *k;
@@ -6,14 +8,14 @@ char *s21_strtok(char *str, const char *delim) {
     str = p;
   }
   int count = 0, fl;
-  for (int i = 0; str[i]!= '\0'; i++) {
+  for (int i = 0; str[i] != '\0'; i++) {
     fl = 0;
     for (int j = 0; delim[j] != '\0'; j++) {
-        if (delim[j] == str[i]) {
-            count++;
-            fl = 1;
-            break;
-        }
+      if (delim[j] == str[i]) {
+        count++;
+        fl = 1;
+        break;
+      }
     }
     if (fl == 0) break;
   }

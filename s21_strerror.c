@@ -1,7 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
 #include "s21_string.h"
 
 #if defined(__linux__)
@@ -154,11 +150,11 @@ char *s21_strerror(int errnum) {
   return (flag == 0) ? er_str : error_string;
 }
 
-int main(void) {
-  printf("STATUS %d\n", STATUS);
-  for (int idx = -10; idx < 13; idx++) {
-    printf("%s\n", strerror(idx));
-    printf("%s\n", s21_strerror(idx));
-  }
-  return 0;
-}
+// int main(void) {
+//   printf("STATUS %d\n", STATUS);
+//   for (int idx = -10; idx < 13; idx++) {
+//     printf("%s\n", strerror(idx));
+//     printf("%s\n", s21_strerror(idx));
+//   }
+//   return 0;
+// }

@@ -1,6 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-
 #include "s21_string.h"
 
 char *s21_strcat(char *dest, const char *str) {
