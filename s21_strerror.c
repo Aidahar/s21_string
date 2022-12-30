@@ -74,7 +74,8 @@
 #define STATUS 1
 #define ERRORS_STRING ERRORS_STRING_APPLE
 #define ERRORS_STRING_APPLE                                                   \
-  "Operation not permitted", "No such file or directory", "No such process",  \
+  "Undefined error: 0", "Operation not permitted",                            \
+      "No such file or directory", "No such process",                         \
       "Interrupted system call", "Input/output error",                        \
       "Device not configured", "Argument list too long", "Exec format error", \
       "Bad file descriptor", "No child processes",                            \
@@ -126,6 +127,7 @@
 char *s21_strerror(int errnum) {
   char *ERR_STRING[] = {ERRORS_STRING};
   char *error_string;
+  short flag = 0;
 #ifdef __linux__
   char er_str[] = "Unknown error ";
 #elif __APPLE__
@@ -134,25 +136,28 @@ char *s21_strerror(int errnum) {
   char es[256];
   if (0 == STATUS) {
     if (0 < errnum && 147 > errnum) {
+      flag++;
       error_string = ERR_STRING[errnum];
     } else {
       s21_itoa(errnum, es);
-      error_string = s21_strcat(er_str, es);
+      s21_strcat(er_str, es);
     }
   } else if (1 == STATUS) {
     if (0 <= errnum && 106 > errnum) {
+      flag++;
       error_string = ERR_STRING[errnum];
     } else {
       s21_itoa(errnum, es);
-      error_string = s21_strcat(er_str, es);
+      s21_strcat(er_str, es);
     }
   }
-  return error_string;
+  return (flag == 0) ? er_str : error_string;
 }
 
 int main(void) {
   printf("STATUS %d\n", STATUS);
-  for (int idx = -10; idx < 1320090909; idx++) {
+  for (int idx = -10; idx < 13; idx++) {
+    printf("%s\n", strerror(idx));
     printf("%s\n", s21_strerror(idx));
   }
   return 0;
