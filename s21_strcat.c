@@ -4,11 +4,11 @@
 #include "s21_string.h"
 
 char *s21_strcat(char *dest, const char *str) {
-  char *tmp = dest;
   s21_size_t idx = s21_strlen(dest);
   s21_size_t last = idx + s21_strlen(str);
   for (; idx < last; idx++, str++) {
-    tmp[idx] = *str;
+    dest[idx] = *str;
   }
-  return tmp;
+  dest[idx] = '\0';
+  return dest;
 }

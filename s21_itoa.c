@@ -2,84 +2,64 @@
 #include <stdlib.h>
 
 #include "s21_string.h"
-// #include <string.h>
-
-// char *s21_itoa(int num, char *buf);
-// int cnt_number(int num);
-// void reverse(char *str);
 
 // int main(void) {
-//   int num = -123;
-//   char *buf = (char *)malloc(11);
+//   int num = -1;
+//   char buf[13];
 //   s21_itoa(num, buf);
 //   printf("before = %d\n", num);
-//   reverse(buf);
 //   printf("answer = %s\n", buf);
-//   num = -1879465020;
+//   num = -18;
 //   s21_itoa(num, buf);
 //   printf("before = %d\n", num);
-//   reverse(buf);
 //   printf("answer = %s\n", buf);
-//   num = 1879465020;
+//   num = -123;
 //   s21_itoa(num, buf);
 //   printf("before = %d\n", num);
-//   reverse(buf);
+//   printf("answer = %s\n", buf);
+//   num = -23;
+//   s21_itoa(num, buf);
+//   printf("before = %d\n", num);
 //   printf("answer = %s\n", buf);
 //   num = 0;
-//   s21_itoa(num, buf);
+//   char new[12];
+//   s21_itoa(num, new);
 //   printf("before = %d\n", num);
-//   reverse(buf);
-//   printf("answer = %s\n", buf);
-//   free(buf);
+//   printf("answer = %s\n", new);
 //   exit(0);
 // }
 
-int cnt_number(int num) {
-  int ans = 0;
-  if (0 > num) {
-    num *= -1;
-  }
-  while (0 < num) {
-    num /= 10;
-    ans++;
-  }
-  return ans;
-}
-
-char *s21_itoa(int num, char *buf) {
-  char *ans = buf;
-  int flag = 0, idx = 0, cnt_n = cnt_number(num);
+void s21_itoa(int num, char *buf) {
+  int idx = 0, flag = 0;
   char d;
-  if (0 > num) {
-    flag = 1;
-    num *= -1;
-  }
-  if (0 <= num && 9 >= num) {
-    ans[0] = num + 48;
+  if (0 == num) {
+    buf[idx] = 48;
   } else {
-    while (cnt_n > idx) {
+    if (0 > num) {
+      flag = 1;
+      num = -num;
+    }
+    while (0 < num) {
       d = num % 10;
-      ans[idx] = d + 48;
+      buf[idx++] = d + 48;
       num /= 10;
-      idx++;
     }
     if (flag) {
-      ans[idx] = '-';
+      buf[idx++] = '-';
     }
+    buf[idx] = '\0';
   }
-  reverse(ans);
-  return ans;
+  reverse(buf);
 }
 
 void reverse(char *str) {
   if (str) {
     char tmp;
-    int idx = s21_strlen(str) - 1;
-    for (int i = 0; i <= idx / 2; i++) {
+    int i, j;
+    for (i = 0, j = s21_strlen(str) - 1; i < j; i++, j--) {
       tmp = str[i];
-      str[i] = str[idx];
-      str[idx] = tmp;
-      idx--;
+      str[i] = str[j];
+      str[j] = tmp;
     }
   }
 }

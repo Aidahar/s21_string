@@ -4,7 +4,7 @@
 
 #include "s21_string.h"
 
-#if defined(__LINUX__)
+#if defined(__linux__)
 #define STATUS 0
 #define ERRORS_STRING ERRORS_STRING_LINUX
 #define ERRORS_STRING_LINUX                                                    \
@@ -126,22 +126,25 @@
 char *s21_strerror(int errnum) {
   char *ERR_STRING[] = {ERRORS_STRING};
   char *error_string;
+#ifdef __linux__
+  char er_str[] = "Unknown error ";
+#elif __APPLE__
+  char er_str[] = "Unknown error: ";
+#endif
   char es[256];
   if (0 == STATUS) {
     if (0 < errnum && 147 > errnum) {
       error_string = ERR_STRING[errnum];
     } else {
       s21_itoa(errnum, es);
-      printf("%s\n", es);
-      error_string = "Unknown error";
+      error_string = s21_strcat(er_str, es);
     }
   } else if (1 == STATUS) {
-    if (1 < errnum && 107 > errnum) {
+    if (0 <= errnum && 106 > errnum) {
       error_string = ERR_STRING[errnum];
     } else {
       s21_itoa(errnum, es);
-      printf("%s\n", s21_itoa(errnum, es));
-      error_string = "Unknown error";
+      error_string = s21_strcat(er_str, es);
     }
   }
   return error_string;
@@ -149,7 +152,7 @@ char *s21_strerror(int errnum) {
 
 int main(void) {
   printf("STATUS %d\n", STATUS);
-  for (int idx = -10; idx < 147; idx++) {
+  for (int idx = -10; idx < 1320090909; idx++) {
     printf("%s\n", s21_strerror(idx));
   }
   return 0;
