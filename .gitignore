@@ -1,3 +1,6 @@
 *.out
 *.css
 *.html
+*.gcda
+*.gcno
+*.o
