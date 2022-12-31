@@ -1,0 +1,48 @@
+        -:    0:Source:s21_memcmp.c
+        -:    1:#include "s21_string.h"
+        -:    2:
+        3:    3:int s21_memcmp(const void *str1, const void *str2, S21_SIZE_T n) {
+        3:    4:  int ans = 0;
+        -:    5:  S21_SIZE_T idx;
+        3:    6:  const char *lh = str1;
+        3:    7:  const char *rh = str2;
+        7:    8:  for (idx = 0; idx <= n; idx++, lh++, rh++) {
+        6:    9:    if (*lh < *rh) {
+        1:   10:      ans = -1;
+        1:   11:      break;
+        5:   12:    } else if (*lh > *rh) {
+        1:   13:      ans = 1;
+        1:   14:      break;
+        -:   15:    }
+        -:   16:  }
+        3:   17:  return ans;
+        -:   18:}
+        -:   19:
+        -:   20:// int main(void) {
+        -:   21://   char *a1 = "abss";
+        -:   22://   char *a2 = "aabs";
+        -:   23://   printf("My cmp = %d\n", s21_memcmp(a1, a2, 4));
+        -:   24://   printf("Real cmp = %d\n", memcmp(a1, a2, 4));
+        -:   25://   a1 = "aabs";
+        -:   26://   a2 = "abss";
+        -:   27://   printf("My cmp = %d\n", s21_memcmp(a1, a2, 4));
+        -:   28://   printf("Real cmp = %d\n", memcmp(a1, a2, 4));
+        -:   29://   a1 = "aabs";
+        -:   30://   a2 = "aabs";
+        -:   31://   printf("My cmp = %d\n", s21_memcmp(a1, a2, 4));
+        -:   32://   printf("Real cmp = %d\n", memcmp(a1, a2, 4));
+        -:   33://   printf("Numbers\n");
+        -:   34://   int n1[] = {1, 2, 6, 4};
+        -:   35://   int n2[] = {1, 2, 3, 4};
+        -:   36://   printf("My cmp = %d\n", s21_memcmp(n1, n2, sizeof(n1)));
+        -:   37://   printf("Real cmp = %d\n", memcmp(n1, n2, sizeof(n1)));
+        -:   38://   int s1[] = {1, 2, 3, 4};
+        -:   39://   int s2[] = {1, 2, 6, 4};
+        -:   40://   printf("My cmp = %d\n", s21_memcmp(s1, s2, sizeof(s1)));
+        -:   41://   printf("Real cmp = %d\n", memcmp(s1, s2, sizeof(s1)));
+        -:   42://   int g1[] = {1, 2, 3, 4};
+        -:   43://   int g2[] = {1, 2, 3, 4};
+        -:   44://   printf("My cmp = %d\n", s21_memcmp(g1, g2, sizeof(g1)));
+        -:   45://   printf("Real cmp = %d", memcmp(g1, g2, sizeof(g1)));
+        -:   46://   exit(0);
+        -:   47:// }

@@ -34,7 +34,7 @@ void *s21_trim(const char *src, const char *trim_chars) {
       flag = 1;
     }
   }
-  return (flag) ? tmp : NULL;
+  return (flag) ? tmp : S21_NULL;
 }
 
 int main(void) {

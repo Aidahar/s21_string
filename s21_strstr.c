@@ -1,7 +1,7 @@
 #include "s21_string.h"
 
 char *s21_strstr(const char *haystack, const char *needle) {
-  int len1 = strlen(haystack), len2 = strlen(needle);
+  int len1 = s21_strlen(haystack), len2 = s21_strlen(needle);
   char *str1 = (char *)haystack;
   char *str2 = (char *)needle;
   int i = 0, k = 1;

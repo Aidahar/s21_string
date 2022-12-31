@@ -1,8 +1,8 @@
 #include "s21_string.h"
 
-int s21_memcmp(const void *str1, const void *str2, s21_size_t n) {
+int s21_memcmp(const void *str1, const void *str2, S21_SIZE_T n) {
   int ans = 0;
-  s21_size_t idx;
+  S21_SIZE_T idx;
   const char *lh = str1;
   const char *rh = str2;
   for (idx = 0; idx <= n; idx++, lh++, rh++) {

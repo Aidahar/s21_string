@@ -1,15 +1,14 @@
 #include "s21_string.h"
 
-void *s21_memmove(void *dest, const void *src, s21_size_t n) {
-  s21_size_t idx;
-  if (s21_NULL == dest) dest = s21_NULL;
+void *s21_memmove(void *dest, const void *src, S21_SIZE_T n) {
+  S21_SIZE_T idx;
+//  if (S21_NULL == dest) dest = S21_NULL;
   char *targ = (char *)malloc(n * sizeof(char));
   const char *from = src;
   for (idx = 0; idx < n; idx++, targ++, from++) {
     *targ = *from;
   }
   dest = targ;
-  free(targ);
   return (void *)dest;
 }
 

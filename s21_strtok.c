@@ -31,5 +31,5 @@ char *s21_strtok(char *str, const char *delim) {
     str++;
   }
   p = str;
-  return (k[0] == '\0') ? NULL : k;
+  return (k[0] == '\0') ? S21_NULL : k;
 }

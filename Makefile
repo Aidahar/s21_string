@@ -15,7 +15,7 @@ gcov_report: test
 
 test: s21_string.a
 	gcc test.c -c
-	gcc $(CFLAGS) $(TEST_FLAGS) $(GCOV) s21_string.a s21_memcmp.c s21_memchr.c test.o -o test
+	gcc $(CFLAGS) $(TEST_FLAGS) $(GCOV) s21_string.a s21_memset.c s21_memmove.c s21_memcmp.c s21_memchr.c s21_memcpy.c test.o -o test
 	./test
 
 s21_string.a: s21_string.o
@@ -24,8 +24,8 @@ s21_string.a: s21_string.o
 	cp libs21_string.a ls21_string.a
 	cp libs21_string.a s21_string.a
 
-s21_string.o: s21_*.c
-	gcc $(CFLAGS) -c s21_*.c 
+s21_string.o: s21_memchr.c s21_memcmp.c s21_memcpy.c s21_memmove.c s21_memset.c
+	gcc $(CFLAGS) -c s21_memchr.c s21_memcmp.c s21_memcpy.c s21_memmove.c s21_memset.c
 
 .PHONY: all build clean rebuild
 

@@ -1,8 +1,8 @@
 #include "s21_string.h"
 
 char *s21_strcat(char *dest, const char *str) {
-  s21_size_t idx = s21_strlen(dest);
-  s21_size_t last = idx + s21_strlen(str);
+  S21_SIZE_T idx = s21_strlen(dest);
+  S21_SIZE_T last = idx + s21_strlen(str);
   for (; idx < last; idx++, str++) {
     dest[idx] = *str;
   }
