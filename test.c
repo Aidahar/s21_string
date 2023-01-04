@@ -17,15 +17,18 @@ START_TEST(s21_memchr_my) {
 END_TEST
 
 START_TEST(s21_memcmp_my) {
-  char *a1 = "abss";
-  char *a2 = "tabs";
+  char a1[] = "abss";
+  char a2[] = "tabs";
   ck_assert_int_ge(s21_memcmp(a1, a2, 3), memcmp(a1, a2, 3));
-  a1 = "tabs";
-  a2 = "abss";
-  ck_assert_int_le(s21_memcmp(a1, a2, 3), memcmp(a1, a2, 3));
-  a1 = "abss";
-  a2 = "abss";
-  ck_assert_int_le(s21_memcmp(a1, a2, 3), memcmp(a1, a2, 3));
+  char *a3 = "tabs";
+  char *a4 = "abss";
+  ck_assert_int_ge(s21_memcmp(a1, a2, 2), memcmp(a1, a2, 2));
+  char *a5 = "aaaaa";
+  char *a6 = "aaaab";
+  ck_assert_int_ge(s21_memcmp(a1, a2, 5), memcmp(a1, a2, 5));
+  char *a7 = "aaaaa";
+  char *a8 = "aaaab";
+  ck_assert_int_ge(s21_memcmp(a1, a2, 3), memcmp(a1, a2, 3));
 }
 END_TEST
 
@@ -58,6 +61,18 @@ START_TEST(s21_memset_my) {
 }
 END_TEST
 
+START_TEST(s21_strlen_my) {
+  char a1[] = "This is a test of the memset function";
+  ck_assert_int_eq(s21_strlen(a1), strlen(a1));
+  char a2[] = "tabs";
+  ck_assert_int_eq(s21_strlen(a1), strlen(a1));
+  char a3[] = "******************************";
+  ck_assert_int_eq(s21_strlen(a3), strlen(a3));
+
+}
+END_TEST
+
+
 Suite *s21_string_suit(void) {
   Suite *s;
   s = suite_create("String.h functions");
@@ -67,6 +82,7 @@ Suite *s21_string_suit(void) {
   TCase *tc_memcpy;
   TCase *tc_memmove;
   TCase *tc_memset;
+  TCase *tc_strlen;
 
   tc_memchr = tcase_create("memchr");
   suite_add_tcase(s, tc_memchr);
@@ -88,6 +104,11 @@ Suite *s21_string_suit(void) {
   tc_memset= tcase_create("memset");
   suite_add_tcase(s, tc_memset);
   tcase_add_test(tc_memset, s21_memset_my);
+
+  tc_strlen = tcase_create("strlen");
+  suite_add_tcase(s, tc_strlen);
+  tcase_add_test(tc_strlen, s21_strlen_my);
+
 
   return s;
 }

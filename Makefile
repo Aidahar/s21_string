@@ -15,17 +15,17 @@ gcov_report: test
 
 test: s21_string.a
 	gcc test.c -c
-	gcc $(CFLAGS) $(TEST_FLAGS) $(GCOV) s21_string.a s21_memset.c s21_memmove.c s21_memcmp.c s21_memchr.c s21_memcpy.c test.o -o test
+	gcc $(CFLAGS) $(TEST_FLAGS) $(GCOV) s21_string.a s21_strlen.c s21_memset.c s21_memmove.c s21_memcmp.c s21_memchr.c s21_memcpy.c test.o -o test
 	./test
 
 s21_string.a: s21_string.o
-	ar rc libs21_string.a s21_memchr.o s21_memcmp.o
+	ar rc libs21_string.a s21_memchr.o s21_memcmp.o s21_memchr.o s21_memcmp.o s21_memcpy.o s21_memmove.o s21_memset.o s21_strlen.o
 	ranlib libs21_string.a
 	cp libs21_string.a ls21_string.a
 	cp libs21_string.a s21_string.a
 
-s21_string.o: s21_memchr.c s21_memcmp.c s21_memcpy.c s21_memmove.c s21_memset.c
-	gcc $(CFLAGS) -c s21_memchr.c s21_memcmp.c s21_memcpy.c s21_memmove.c s21_memset.c
+s21_string.o: s21_memchr.c s21_memcmp.c s21_memcpy.c s21_memmove.c s21_memset.c s21_strlen.c 
+	gcc $(CFLAGS) -c s21_memchr.c s21_memcmp.c s21_memcpy.c s21_memmove.c s21_memset.c s21_strlen.c 
 
 .PHONY: all build clean rebuild
 
