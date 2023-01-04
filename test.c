@@ -53,28 +53,42 @@ END_TEST
 START_TEST(s21_memcpy_my) {
   char a1[] = "abss";
   char a2[] = "tabs";
-  ck_assert_msg(s21_memcpy(a1, a2, 3), memcpy(a1, a2, 3));
+  ck_assert_str_eq(s21_memcpy(a1, a2, 3), memcpy(a1, a2, 3));
+  /* test number array */
+  int arr[10] = {8,3,11,61,-22,7,-6,2,13,47};
+  int new_arr_my[5] = {0};
+  int new_arr_origin[5] = {0};
+  s21_memcpy(new_arr_my, arr, 5);
+  memcpy(new_arr_origin, arr, 5);
+  for (int idx = 0; idx < 5; idx++) {
+    ck_assert_int_eq(new_arr_my[idx], new_arr_origin[idx]);
+  }
 }
 END_TEST
 
 START_TEST(s21_memmove_my) {
-  char a1[] = "abss";
+  char a_my[] = "abss";
+  char a_origin[] = "abss";
   char a2[] = "tabs";
-  ck_assert_msg(s21_memmove(a1, a2, 3), memmove(a1, a2, 3));
-  char a3[] = "******************************";
+  s21_memmove(a_my, a2, 3);
+  memmove(a_origin, a2, 3);
+  ck_assert_str_eq(a_my, a_origin);
+  char a_my_2[] = "******************************";
+  char a_origin_2[] = "******************************";
   char a4[] = "abcdefghijklmnopqrstuvwxyz0123456789";
-  ck_assert_msg(s21_memmove(a3, a4, 26), memmove(a3, a4, 26));
-
+  s21_memmove(a_my_2, a4, 26);
+  memmove(a_origin_2, a4, 26);
+  ck_assert_str_eq(a_my, a_origin);
 }
 END_TEST
 
 START_TEST(s21_memset_my) {
   char a1[] = "This is a test of the memset function";
-  ck_assert_msg(s21_memset(a1, '*', 4), memset(a1, '*', 4));
+  ck_assert_str_eq(s21_memset(a1, '*', 4), memset(a1, '*', 4));
   char a2[] = "tabs";
-  ck_assert_msg(s21_memset(a1, 'a', 1), memset(a1, 'a', 1));
+  ck_assert_str_eq(s21_memset(a1, 'a', 1), memset(a1, 'a', 1));
   char a3[] = "******************************";
-  ck_assert_msg(s21_memset(a3, 'g', 20), memset(a3, 'g', 20));
+  ck_assert_str_eq(s21_memset(a3, 'g', 20), memset(a3, 'g', 20));
 
 }
 END_TEST

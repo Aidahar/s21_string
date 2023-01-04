@@ -1,5 +1,4 @@
 #include "s21_string.h"
-#include <string.h>
 
 int s21_memcmp(const void *str1, const void *str2, S21_SIZE_T n) {
   int ans = 0;
