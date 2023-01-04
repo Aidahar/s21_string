@@ -1,0 +1,23 @@
+        -:    0:Source:s21_memmove.c
+        -:    1:#include "s21_string.h"
+        -:    2:
+        4:    3:void *s21_memmove(void *dest, const void *src, S21_SIZE_T n) {
+        -:    4:  S21_SIZE_T idx;
+        -:    5://  if (S21_NULL == dest) dest = S21_NULL;
+        4:    6:  char *targ = (char *)malloc(n * sizeof(char));
+        4:    7:  const char *from = src;
+       62:    8:  for (idx = 0; idx < n; idx++, targ++, from++) {
+       58:    9:    *targ = *from;
+        -:   10:  }
+        4:   11:  dest = targ;
+        4:   12:  return (void *)dest;
+        -:   13:}
+        -:   14:
+        -:   15:// int main(void) {
+        -:   16://   char src[] = "******************************";
+        -:   17://   char dest[] = "abcdefghijklmnopqrstuvwxyz0123456789";
+        -:   18://   printf("Строка назначения перед копированием: %s\n", dest);
+        -:   19://   memmove(dest, src, 26);
+        -:   20://   printf("Строка назначения после копирования:  %s\n", dest);
+        -:   21://   exit(0);
+        -:   22:// }

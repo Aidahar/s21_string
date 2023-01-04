@@ -1,0 +1,9 @@
+        -:    0:Source:s21_strlen.c
+        -:    1:#include "s21_string.h"
+        -:    2:
+        6:    3:S21_SIZE_T s21_strlen(const char *str) {
+        -:    4:  const char *p;
+      214:    5:  for (p = str; *p; p++) {
+        -:    6:  }
+        6:    7:  return p - str;
+        -:    8:}

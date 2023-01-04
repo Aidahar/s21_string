@@ -17,18 +17,36 @@ START_TEST(s21_memchr_my) {
 END_TEST
 
 START_TEST(s21_memcmp_my) {
-  char a1[] = "abss";
-  char a2[] = "tabs";
-  ck_assert_int_ge(s21_memcmp(a1, a2, 3), memcmp(a1, a2, 3));
-  char *a3 = "tabs";
-  char *a4 = "abss";
+  /* test string */
+  char *a1 = "abss";
+  char *a2 = "aabs";
+  ck_assert_int_ge(s21_memcmp(a1, a2, 4), memcmp(a1, a2, 4));
+  ck_assert_int_eq(s21_memcmp(a1, a2, 1), memcmp(a1, a2,1));
   ck_assert_int_ge(s21_memcmp(a1, a2, 2), memcmp(a1, a2, 2));
-  char *a5 = "aaaaa";
-  char *a6 = "aaaab";
   ck_assert_int_ge(s21_memcmp(a1, a2, 5), memcmp(a1, a2, 5));
-  char *a7 = "aaaaa";
-  char *a8 = "aaaab";
-  ck_assert_int_ge(s21_memcmp(a1, a2, 3), memcmp(a1, a2, 3));
+  a1 = "aabs";
+  a2 = "abss";
+  ck_assert_int_le(s21_memcmp(a1, a2, 4), memcmp(a1, a2, 4));
+  ck_assert_int_eq(s21_memcmp(a1, a2, 1), memcmp(a1, a2,1));
+  ck_assert_int_le(s21_memcmp(a1, a2, 2), memcmp(a1, a2, 2));
+  ck_assert_int_le(s21_memcmp(a1, a2, 5), memcmp(a1, a2, 5));
+  a1 = "aaaaa";
+  a2 = "aaaaa";
+  ck_assert_int_eq(s21_memcmp(a1, a2, 4), memcmp(a1, a2, 4));
+  ck_assert_int_eq(s21_memcmp(a1, a2, 1), memcmp(a1, a2,1));
+  ck_assert_int_eq(s21_memcmp(a1, a2, 2), memcmp(a1, a2, 2));
+  ck_assert_int_eq(s21_memcmp(a1, a2, 6), memcmp(a1, a2, sizeof(char)*6));
+  /* test numbers array */
+  int s1[] = {1, 2, 3, 4};
+  int s2[] = {1, 2, 6, 4};
+  ck_assert_int_ge(s21_memcmp(s1, s2, sizeof(int)*3), memcmp(s1, s2, sizeof(int)*3));
+  ck_assert_int_eq(s21_memcmp(s1, s2, sizeof(int)*2), memcmp(s1, s2, sizeof(int)*2));
+  ck_assert_int_ge(s21_memcmp(s1, s2, sizeof(int)*4), memcmp(s1, s2, sizeof(int)*4));
+  int s3[] = {1, 2, 6, 4};
+  int s4[] = {1, 2, 3, 4};
+  ck_assert_int_le(s21_memcmp(s3, s4, sizeof(int)*3), memcmp(s3, s4, sizeof(int)*3));
+  ck_assert_int_eq(s21_memcmp(s3, s4, sizeof(int)*2), memcmp(s3, s4, sizeof(int)*2));
+  ck_assert_int_le(s21_memcmp(s3, s4, sizeof(int)*4), memcmp(s3, s4, sizeof(int)*4));
 }
 END_TEST
 

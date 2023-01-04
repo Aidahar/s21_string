@@ -1,0 +1,11 @@
+        -:    0:Source:s21_memset.c
+        -:    1:#include "s21_string.h"
+        -:    2:
+        6:    3:void *s21_memset(void *str, int c, S21_SIZE_T n) {
+        -:    4:  S21_SIZE_T idx;
+        6:    5:  unsigned char *dest = str;
+       56:    6:  for (idx = 0; idx < n; idx++, dest++) {
+       50:    7:    *dest = (unsigned char)c;
+        -:    8:  }
+        6:    9:  return (void *)dest;
+        -:   10:}
