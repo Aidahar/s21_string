@@ -5,3 +5,5 @@
 *.gcno
 *.o
 *.gcov
+*.a
+test
