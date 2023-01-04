@@ -34,5 +34,5 @@ rebuild: clean s21_string.a
 rebuild_test: clean test
 
 clean:
-	rm -rf *.o *.gch *.dSYM *.gcov *.gcda *.gcno *.a test *.css *.html
+	rm -rf *.o *.out *.gch *.dSYM *.gcov *.gcda *.gcno *.a test *.css *.html
 
