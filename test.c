@@ -83,12 +83,18 @@ START_TEST(s21_memmove_my) {
 END_TEST
 
 START_TEST(s21_memset_my) {
-  char a1[] = "This is a test of the memset function";
-  ck_assert_str_eq(s21_memset(a1, '*', 4), memset(a1, '*', 4));
-  char a2[] = "tabs";
-  ck_assert_str_eq(s21_memset(a1, 'a', 1), memset(a1, 'a', 1));
-  char a3[] = "******************************";
-  ck_assert_str_eq(s21_memset(a3, 'g', 20), memset(a3, 'g', 20));
+  char str_my[] = "This is a test of the memset function";
+  char str_origin[] = "This is a test of the memset function";
+  s21_memset(str_my, '*', 5);
+  memset(str_origin, '*', 5);
+  ck_assert_str_eq(str_my, str_origin);
+  char str_my_2[] = "tabs";
+  char str_origin_2[] = "tabs";
+  s21_memset(str_my_2, 'a', 1);
+  memset(str_origin_2, 'a', 1);
+  char str_my_3[] = "******************************";
+  char str_origin_3[] = "******************************";
+  ck_assert_str_eq(s21_memset(str_my_3, 'g', 20), memset(str_origin_3, 'g', 20));
 
 }
 END_TEST
