@@ -1,31 +1,5 @@
 #include "s21_string.h"
 
-// int main(void) {
-//   int num = -1;
-//   char buf[13];
-//   s21_itoa(num, buf);
-//   printf("before = %d\n", num);
-//   printf("answer = %s\n", buf);
-//   num = -18;
-//   s21_itoa(num, buf);
-//   printf("before = %d\n", num);
-//   printf("answer = %s\n", buf);
-//   num = -123;
-//   s21_itoa(num, buf);
-//   printf("before = %d\n", num);
-//   printf("answer = %s\n", buf);
-//   num = -23;
-//   s21_itoa(num, buf);
-//   printf("before = %d\n", num);
-//   printf("answer = %s\n", buf);
-//   num = 0;
-//   char new[12];
-//   s21_itoa(num, new);
-//   printf("before = %d\n", num);
-//   printf("answer = %s\n", new);
-//   exit(0);
-// }
-
 void s21_itoa(int num, char *buf) {
   int idx = 0, flag = 0;
   char d;
@@ -50,13 +24,11 @@ void s21_itoa(int num, char *buf) {
 }
 
 void reverse(char *str) {
-  if (str) {
-    char tmp;
-    int i, j;
-    for (i = 0, j = s21_strlen(str) - 1; i < j; i++, j--) {
-      tmp = str[i];
-      str[i] = str[j];
-      str[j] = tmp;
-    }
+  char tmp;
+  int i, j;
+  for (i = 0, j = s21_strlen(str) - 1; i < j; i++, j--) {
+    tmp = str[i];
+    str[i] = str[j];
+    str[j] = tmp;
   }
 }
